@@ -1,0 +1,35 @@
+<a href="{% url 'home' %}">Главная страница</a>
+<br>
+<br>
+<br>
+ВАШ РЕФЕРАЛЬНЫЙ КОД: {{ referrals.my_referral }}
+
+{% if referrals.another_referral %}
+<br>
+<br>
+<br>
+<br>
+<br>
+Использованный чужой реферальный код: {{ referrals.another_referral }}
+
+
+{% else %}
+
+<br>
+<form method="POST">
+    {% csrf_token %}
+    <label for="invite_code">Введите чужой инвайт-код: </label>
+    <input id="invite_code" type="text" name="invite_code">
+    <button type="submit">OK</button>
+</form>
+
+{% endif %}
+
+<br>
+<br>
+ПОЛЬЗОВАТЕЛИ КОТОРЫЕ ВВЕЛИ ВАШ РЕФЕРАЛЬНЫЙ КОД:
+{% for elem in alien_referrals %}
+
+<br>{{ elem.phone_number }}
+
+{% endfor %}

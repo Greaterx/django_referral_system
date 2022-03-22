@@ -1,0 +1,21 @@
+{% if codeWrite %}
+
+<form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="phone" value="{{ phoneWrite }}">
+    Код:{{ codeWrite }}
+    <label for="code">Введите ваш код: </label>
+    <input id="code" type="text" name="code">
+    <button type="submit">OK</button>
+</form>
+
+{% else %}
+
+<form method="POST">
+    {% csrf_token %}
+    <label for="phone">Введите ваш номер телефона: </label>
+    <input id="phone" type="text" name="phone">
+    <button type="submit">OK</button>
+</form>
+
+{% endif %}
